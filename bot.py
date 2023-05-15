@@ -9,17 +9,17 @@ class TelegramBot(telebot.TeleBot):
         self.session = load_session(session_file)
         self.config = load_config(config_file)
         self.user_data = {}
-        self.users = []
-        self.admins = []
-        self.user_names = []
+        self.users = {}
+        self.admins = {}
+        self.user_names = {}
         self.update_users()
         print(self.config)
         
 
     def update_users(self):
-        self.config.setdefault('admins', [])
-        self.config.setdefault('users', [])
-        self.config.setdefault('user_names', [])
+        self.config.setdefault('admins', {})
+        self.config.setdefault('users', {})
+        self.config.setdefault('user_names', {})
 
         self.users = self.config.get('users', [])
         self.admins = self.config.get('admins', [])
